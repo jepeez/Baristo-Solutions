@@ -1,0 +1,103 @@
+---
+import "../styles/global.css";
+import "@fontsource/inter";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Baristo Solutions - Expert Partner in Liquid Scintillation Counting (LSC) and Hidex TDCR technology.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- JSON-LD for Professional Service -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Baristo Solutions Oy",
+        "founder": "Risto Juvonen",
+        "image": "https://baristosolutions.com/logo.png",
+        "description": "Expert Partner in Liquid Scintillation Counting (LSC) and Hidex TDCR technology.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rantatie 582",
+          "addressLocality": "Säkylä",
+          "postalCode": "27800",
+          "addressCountry": "FI"
+        },
+        "telephone": "+358409001558",
+        "email": "risto.juvonen@baristosolutions.com",
+        "url": "https://baristosolutions.com",
+        "sameAs": ["https://www.linkedin.com/in/ristojuvonen/"]
+      }
+    </script>
+  </head>
+  <body
+    class="relative text-slate-800 font-sans antialiased selection:bg-primary-blue selection:text-white"
+  >
+    <!-- Background Gradient -->
+    <div
+      class="fixed inset-0 bg-gradient-to-br from-slate-200 via-blue-50 to-slate-200 -z-50"
+    >
+    </div>
+
+    <!-- Subtle global hex pattern -->
+    <div
+      class="fixed inset-0 bg-[url('/hex-grid.svg')] bg-[length:50px_auto] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_60%,transparent_100%)] -z-40 opacity-30"
+    >
+    </div>
+    <slot />
+
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".fade-in-section");
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+    will-change: opacity, transform;
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

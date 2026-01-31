@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ProblemSolution from "../components/ProblemSolution.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import KnowledgeBase from "../components/KnowledgeBase.astro";
+import TrustedBy from "../components/TrustedBy.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Layout title="Baristo Solutions | LSC Expert & Hidex TDCR Support">
+	<Header />
+	<main>
+		<Hero />
+		<TrustedBy />
+		<div
+			class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-50"
+		>
+		</div>
+		<ProblemSolution />
+		<div
+			class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-50"
+		>
+		</div>
+		<Services />
+		<div
+			class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-50"
+		>
+		</div>
+		<About />
+		<div
+			class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-50"
+		>
+		</div>
+		<KnowledgeBase />
+	</main>
+	<Contact />
+</Layout>

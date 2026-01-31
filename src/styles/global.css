@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-blue: #0056D2; /* Example standard corporate blue, will refine based on logo */
+  --color-scientific-green: #28a745; /* Example scientific green */
+  --color-slate-grey: #64748b;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
