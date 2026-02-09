@@ -1,5 +1,13 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'>
-  <g fill='none' stroke='#64748b' stroke-width='0.5' stroke-opacity='0.4'>
-    <path d='M13.99 9.25l-13 7.5v15l13 7.5l13-7.5v-15zM14 0v9.25M14 39.25V49' />
-  </g>
+<svg width="56" height="100" viewBox="0 0 56 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="hex" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1)">
+            <g fill="none" stroke="#64748b" stroke-width="2" stroke-opacity="0.2">
+                <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" />
+                <path d="M28 0L28 33" />
+                <path d="M0 16L0 0" /> <!-- Top left corner -->
+                <path d="M56 16L56 0" /> <!-- Top right corner -->
+            </g>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hex)" />
 </svg>
