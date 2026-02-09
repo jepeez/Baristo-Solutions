@@ -163,10 +163,8 @@
                     Send a Message
                 </h3>
                 <form
+                    id="contact-form"
                     class="space-y-6"
-                    action="#"
-                    method="POST"
-                    onsubmit="event.preventDefault(); alert('This is a demo form. Integration with a backend service (e.g., Netlify Forms) is required.');"
                 >
                     <div>
                         <label
@@ -232,10 +230,11 @@
 
                     <button
                         type="submit"
-                        class="w-full bg-scientific-green text-white font-bold py-4 rounded-lg hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        class="w-full bg-scientific-green text-white font-bold py-4 rounded-lg hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         Send Message
                     </button>
+                    <div id="form-status" class="mt-4 text-center text-sm font-medium"></div>
                 </form>
             </div>
         </div>
@@ -250,3 +249,50 @@
         </div>
     </div>
 </footer>
+
+<script>
+    import emailjs from "@emailjs/browser";
+
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const statusDiv = document.getElementById("form-status");
+    const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            if (!statusDiv || !submitBtn) return;
+
+            // Reset status
+            statusDiv.textContent = "Sending...";
+            statusDiv.className = "mt-4 text-center text-sm font-medium text-slate-500";
+            submitBtn.disabled = true;
+
+            const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+            const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+            const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+
+            if (!serviceId || !templateId || !publicKey) {
+                statusDiv.textContent = "Error: EmailJS configuration missing.";
+                statusDiv.className = "mt-4 text-center text-sm font-medium text-red-500";
+                submitBtn.disabled = false;
+                console.error("EmailJS environment variables are missing.");
+                return;
+            }
+
+            try {
+                await emailjs.sendForm(serviceId, templateId, form, publicKey);
+                
+                statusDiv.textContent = "Message sent successfully!";
+                statusDiv.className = "mt-4 text-center text-sm font-medium text-green-600";
+                form.reset();
+            } catch (error) {
+                console.error("EmailJS Error:", error);
+                statusDiv.textContent = "Failed to send message. Please try again.";
+                statusDiv.className = "mt-4 text-center text-sm font-medium text-red-500";
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    }
+</script>
