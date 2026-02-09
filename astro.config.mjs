@@ -1,4 +1,5 @@
 // @ts-check
+// Force redeploy
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
