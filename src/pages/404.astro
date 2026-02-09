@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="404 - Page Not Found | Baristo Solutions">
+    <Header />
+    <main class="min-h-screen flex items-center justify-center pt-20 pb-20 px-4">
+        <div class="text-center max-w-2xl mx-auto">
+            <h1 class="text-9xl font-extrabold text-primary-blue opacity-20">404</h1>
+            <h2 class="text-4xl font-bold text-slate-900 -mt-12 mb-6 relative z-10">Page Not Found</h2>
+            <p class="text-xl text-slate-600 mb-10 leading-relaxed">
+                Oops! The page you are looking for seems to have gone missing. 
+                It might have been moved or deleted.
+            </p>
+            <a
+                href="/"
+                class="inline-block px-8 py-4 rounded-full bg-scientific-green text-white font-bold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+                Back to Home
+            </a>
+        </div>
+    </main>
+    <Footer />
+</Layout>
